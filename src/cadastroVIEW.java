@@ -143,20 +143,18 @@ public class cadastroVIEW extends javax.swing.JFrame {
         try {
         ProdutosDTO produto = new ProdutosDTO();
 
-        produto.setNome(cadastroNome.getText());
-        produto.setValor(Integer.parseInt(cadastroValor.getText()));
+        String nome = cadastroNome.getText();
+        String valorTexto = cadastroValor.getText();
+
+        produto.setNome(nome);
+        produto.setValor(Double.parseDouble(valorTexto));
         produto.setStatus("A Venda");
 
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
+        ProdutosDAO dao = new ProdutosDAO();
+        dao.cadastrarProduto(produto);
 
-        JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
-
-        cadastroNome.setText("");
-        cadastroValor.setText("");
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao cadastrar produto");
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Digite um valor válido!");
     }
         
     }//GEN-LAST:event_btnCadastrarActionPerformed

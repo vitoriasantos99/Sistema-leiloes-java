@@ -63,7 +63,7 @@
 
             produto.setId(resultset.getInt("id"));
             produto.setNome(resultset.getString("nome"));
-            produto.setValor(resultset.getInt("valor"));
+            produto.setValor(resultset.getDouble("valor"));
             produto.setStatus(resultset.getString("status"));
 
             lista.add(produto);
@@ -78,30 +78,31 @@
         
         public ArrayList<ProdutosDTO> listarProdutosVendidos() {
 
-    ArrayList<ProdutosDTO> lista = new ArrayList<>();
-    String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
+            ArrayList<ProdutosDTO> lista = new ArrayList<>();
+            
+            String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
 
-    conn = new conectaDAO().connectDB();
+            conn = new conectaDAO().connectDB();
 
-    try {
-        PreparedStatement pst = conn.prepareStatement(sql);
-        ResultSet rs = pst.executeQuery();
+            try {
+        prep = conn.prepareStatement(sql);
+        resultset = prep.executeQuery();
 
-        while (rs.next()) {
-            ProdutosDTO produto = new ProdutosDTO();
-            produto.setId(rs.getInt("id"));
-            produto.setNome(rs.getString("nome"));
-            produto.setValor(rs.getInt("valor"));
-            produto.setStatus(rs.getString("status"));
+        while (resultset.next()) {
+            ProdutosDTO dto = new ProdutosDTO();
 
-            lista.add(produto);
+            dto.setId(resultset.getInt("id"));
+            dto.setNome(resultset.getString("nome"));
+            dto.setValor(resultset.getDouble("valor"));
+            dto.setStatus(resultset.getString("status"));
+
+            lista.add(dto);
         }
 
-        pst.close();
 
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao listar produtos vendidos: " + e.getMessage());
-    }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar produtos vendidos: " + e.getMessage());
+        }
 
     return lista;
 }
