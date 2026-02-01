@@ -24,7 +24,7 @@
 
         public void cadastrarProduto (ProdutosDTO produto){
 
-
+             
             //conn = new conectaDAO().connectDB();
             String sql = "INSERT INTO produtos (nome, valor, status) VALUES (?, ?, ?)";
 
@@ -78,19 +78,17 @@
         
         public ArrayList<ProdutosDTO> listarProdutosVendidos() {
 
-            ArrayList<ProdutosDTO> lista = new ArrayList<>();
-            
-            String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
+    ArrayList<ProdutosDTO> lista = new ArrayList<>();
+    String sql = "SELECT * FROM produtos WHERE status = 'Vendido'";
 
-            conn = new conectaDAO().connectDB();
+    conn = new conectaDAO().connectDB();
 
-            try {
+    try {
         prep = conn.prepareStatement(sql);
         resultset = prep.executeQuery();
 
         while (resultset.next()) {
             ProdutosDTO dto = new ProdutosDTO();
-
             dto.setId(resultset.getInt("id"));
             dto.setNome(resultset.getString("nome"));
             dto.setValor(resultset.getDouble("valor"));
@@ -99,17 +97,18 @@
             lista.add(dto);
         }
 
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar produtos vendidos: " + e.getMessage());
-        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao listar vendidos");
+    }
 
     return lista;
 }
 
 
 
+
         public void venderProduto(int id) {
+
     String sql = "UPDATE produtos SET status = 'Vendido' WHERE id = ?";
 
     conn = new conectaDAO().connectDB();
@@ -118,15 +117,11 @@
         PreparedStatement pst = conn.prepareStatement(sql);
         pst.setInt(1, id);
         pst.executeUpdate();
-        pst.close();
+
+        JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Erro ao vender produto: " + e.getMessage());
     }
 }
-
-
-
-
-
     }
-
