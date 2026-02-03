@@ -36,6 +36,7 @@ public class vendasVIEW extends javax.swing.JFrame {
     public vendasVIEW() {
         initComponents();
         listarVendas();
+        // Commit 4 - tela de vendas criada
     }
 
     /**
