@@ -1,4 +1,6 @@
 
+// Commit 2 - listagem de produtos funcionando
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
