@@ -24,7 +24,7 @@
 
         public void cadastrarProduto (ProdutosDTO produto){
 
-             
+            // Commit 5 - filtro apenas itens vendidos
             //conn = new conectaDAO().connectDB();
             String sql = "INSERT INTO produtos (nome, valor, status) VALUES (?, ?, ?)";
 
