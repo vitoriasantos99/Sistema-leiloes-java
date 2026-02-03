@@ -10,6 +10,8 @@
 
      
     // Commit 1 - botão salvar cadastrando produto
+    // Commit 5 - filtro para listar apenas itens vendidos
+
 
     import java.sql.PreparedStatement;
     import java.sql.Connection;
