@@ -20,6 +20,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     public listagemVIEW() {
         initComponents();
         listarProdutos();
+        // Commit 2 - listagem de produtos funcionando
     }
 
     /**
